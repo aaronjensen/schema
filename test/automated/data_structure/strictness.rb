@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Data Structure" do
   context "Strictness" do
@@ -8,7 +8,7 @@ context "Data Structure" do
         data_structure = Schema::Controls::DataStructure::Example.build(data)
 
         test "Sets matching attributes" do
-          assert(data_structure.some_attribute == 'some value')
+          assert(data_structure.some_attribute == "some value")
         end
       end
 

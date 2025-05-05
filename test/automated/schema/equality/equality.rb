@@ -1,4 +1,4 @@
-require_relative '../../automated_init'
+require_relative "../../automated_init"
 
 context "Equality" do
   context "Whole Object" do
@@ -18,7 +18,7 @@ context "Equality" do
 
       context "Attributes and values are not equal and classes are equal" do
         compare = Schema::Controls::Schema.example
-        compare.some_attribute = 'some other value'
+        compare.some_attribute = "some other value"
 
         test "Schemas are not equal" do
           refute(control == compare)

@@ -120,7 +120,7 @@ module Schema
 
         class Example
           include ::Schema
-          attribute :some_attribute, default: proc { 'some default value' }
+          attribute :some_attribute, default: proc { "some default value" }
           attribute :some_other_attribute
         end
       end

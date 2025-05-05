@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Schema" do
   context "Type" do
@@ -7,7 +7,7 @@ context "Schema" do
     type = example.class.type
 
     test "Class name without the namespace" do
-      assert(type == example.class.name.split('::').last)
+      assert(type == example.class.name.split("::").last)
     end
   end
 end

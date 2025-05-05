@@ -1,4 +1,4 @@
-require_relative '../../automated_init'
+require_relative "../../automated_init"
 
 context "Attribute Definition" do
   example = Schema::Controls::Schema::Example.new
@@ -12,7 +12,7 @@ context "Attribute Definition" do
   end
 
   test "Attribute can be written and read" do
-    example.some_attribute = 'some value'
-    assert(example.some_attribute == 'some value')
+    example.some_attribute = "some value"
+    assert(example.some_attribute == "some value")
   end
 end

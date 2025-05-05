@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Data Structure" do
   context "Dup" do
@@ -21,7 +21,7 @@ context "Data Structure" do
     context "Deep Copy Via Transformation" do
       data = Schema::Controls::DataStructure.hash
 
-      refute(data[:some_attribute] == 'some read value')
+      refute(data[:some_attribute] == "some read value")
 
       data_structure = Schema::Controls::DataStructure::ReadAndWrite::Example.build(data)
 

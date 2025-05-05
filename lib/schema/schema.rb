@@ -20,7 +20,7 @@ module Schema
 
   module Info
     def type
-      name.split('::').last
+      name.split("::").last
     end
   end
 

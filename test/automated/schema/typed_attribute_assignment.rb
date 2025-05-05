@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Typed Attribute Assignment" do
   example = Schema::Controls::Schema::Typed::Example.new
@@ -6,7 +6,7 @@ context "Typed Attribute Assignment" do
   context "Value is not of the same type as the attribute's declared interface" do
     test "Incorrect" do
       assert_raises(Schema::Attribute::TypeError) do
-        example.some_attribute = 'some value'
+        example.some_attribute = "some value"
       end
     end
   end

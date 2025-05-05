@@ -1,4 +1,4 @@
-require_relative '../../../../automated_init'
+require_relative "../../../../automated_init"
 
 context "Attributes List" do
   context "Instance" do
@@ -9,11 +9,11 @@ context "Attributes List" do
         data = data_structure.raw_attributes
 
         test do
-          refute(data_structure.some_attribute == 'some written value')
+          refute(data_structure.some_attribute == "some written value")
         end
 
         test do
-          assert(data[:some_attribute] == 'some value')
+          assert(data[:some_attribute] == "some value")
         end
       end
     end

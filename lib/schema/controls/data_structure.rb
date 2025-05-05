@@ -73,11 +73,11 @@ module Schema
           attribute :some_attribute
 
           def transform_read(data)
-            data[:some_attribute] = 'some read value'
+            data[:some_attribute] = "some read value"
           end
 
           def transform_write(data)
-            data[:some_attribute] = 'some written value'
+            data[:some_attribute] = "some written value"
           end
         end
 
@@ -102,11 +102,11 @@ module Schema
             attribute :some_attribute
 
             def transform_in(data)
-              data[:some_attribute] = 'some read value'
+              data[:some_attribute] = "some read value"
             end
 
             def transform_out(data)
-              data[:some_attribute] = 'some written value'
+              data[:some_attribute] = "some written value"
             end
           end
         end

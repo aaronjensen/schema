@@ -10,7 +10,7 @@ module Schema
         end
 
         def self.some_other_attribute
-          'some different value'
+          "some different value"
         end
       end
     end
