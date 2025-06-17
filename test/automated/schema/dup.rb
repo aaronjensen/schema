@@ -3,7 +3,7 @@ require_relative '../automated_init'
 context "Data Structure" do
   context "Dup" do
     context "Shallow Copy" do
-      data_structure = Schema::Controls::DataStructure.example
+      data_structure = Schema::Controls::Schema.example
 
       duplicate = data_structure.dup
 
@@ -19,11 +19,11 @@ context "Data Structure" do
     end
 
     context "Deep Copy Via Transformation" do
-      data = Schema::Controls::DataStructure.hash
+      data = Schema::Controls::Schema.hash
 
       refute(data[:some_attribute] == 'some read value')
 
-      data_structure = Schema::Controls::DataStructure::ReadAndWrite::Example.build(data)
+      data_structure = Schema::Controls::Schema::ReadAndWrite::Example.build(data)
 
       duplicate = data_structure.dup
 

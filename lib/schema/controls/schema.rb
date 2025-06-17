@@ -208,6 +208,107 @@ module Schema
           end
         end
       end
+
+      module ExtraAttributes
+        def self.data
+          {
+            :some_attribute => Schema.some_attribute,
+            :some_other_attribute => some_other_attribute
+          }
+        end
+
+        def self.some_other_attribute
+          Attribute::Value.some_other_attribute
+        end
+
+        class Example
+          include ::Schema
+          attribute :some_attribute
+        end
+      end
+
+
+      module ConfigureDependencies
+        def self.example
+          Example.build
+        end
+
+        class Example
+          include ::Schema
+
+          attr_accessor :some_dependency
+
+          def configure
+            self.some_dependency = :set
+          end
+        end
+      end
+
+      module ReadAndWrite
+        def self.example
+          example = Example.new
+          example.some_attribute = Schema.some_attribute
+          example
+        end
+
+        class Example
+          include ::Schema
+
+          attribute :some_attribute
+
+          def transform_read(data)
+            data[:some_attribute] = 'some read value'
+          end
+
+          def transform_write(data)
+            data[:some_attribute] = 'some written value'
+          end
+        end
+
+        module Data
+          def self.example
+            {
+              some_attribute: Schema.some_attribute
+            }
+          end
+        end
+
+        module InAndOutAliases
+          def self.example
+            example = Example.new
+            example.some_attribute = Schema.some_attribute
+            example
+          end
+
+          class Example
+            include ::Schema
+
+            attribute :some_attribute
+
+            def transform_in(data)
+              data[:some_attribute] = 'some read value'
+            end
+
+            def transform_out(data)
+              data[:some_attribute] = 'some written value'
+            end
+          end
+        end
+      end
+
+      module TransformReadFail
+        Error = Class.new(RuntimeError)
+
+        class Example < Schema::Example
+          include ::Schema
+
+          attribute :some_attribute
+
+          def transform_read(data)
+            raise Error
+          end
+        end
+      end
     end
   end
 end

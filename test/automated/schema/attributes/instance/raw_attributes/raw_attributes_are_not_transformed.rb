@@ -4,7 +4,7 @@ context "Attributes List" do
   context "Instance" do
     context "Raw Attributes" do
       context "Raw Attributes Are Not Transformed" do
-        data_structure = Schema::Controls::DataStructure::ReadAndWrite.example
+        data_structure = Schema::Controls::Schema::ReadAndWrite.example
 
         data = data_structure.raw_attributes
 

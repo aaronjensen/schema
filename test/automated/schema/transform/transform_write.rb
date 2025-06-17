@@ -2,7 +2,7 @@ require_relative '../../automated_init'
 
 context "Schema" do
   context "Transform Write" do
-    data_structure = Schema::Controls::DataStructure::ReadAndWrite.example
+    data_structure = Schema::Controls::Schema::ReadAndWrite.example
 
     refute(data_structure.some_attribute == 'some written value')
 

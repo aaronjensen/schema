@@ -174,17 +174,13 @@ some_object.age
 # => Schema::Attribute::TypeError
 ```
 
-## Schema::DataStructure
+## Building from Hash Data
 
-The `DataStructure` module is a specialization of `Schema` that augments the receiver with operations that are useful when implementing typical applicative code.
-
-When `Schema::DataStructure` is included in a class, the class method `build` is defined on the class.
-
-The `build` method allows the class to be constructed from a hash of values whose keys correspond to the object's attribute names.
+The `Schema` module includes a `build` class method that allows construction from a hash of values whose keys correspond to the object's attribute names.
 
 ```ruby
 class SomeClass
-  include Schema::DataStructure
+  include Schema
 
   attribute :name, String
   attribute :amount, Numeric
@@ -336,7 +332,7 @@ A message that has nested objects that aren't just primitive values requires spe
 
 ### Input Data
 
-A Schema::DataStructure that implements the `transform_read(data)` method can intercept the input data that the class is constructed with. The data can be modified and customized by this method, and the object's attributes can be manipulated.
+A Schema that implements the `transform_read(data)` method can intercept the input data that the class is constructed with. The data can be modified and customized by this method, and the object's attributes can be manipulated.
 
 Note that the read stage of construction of a data structure from hash data happens before the input hash's attributes are assigned to the object.
 
@@ -344,14 +340,14 @@ To affect changes to the input data, the `transform_read` method implementation 
 
 ```ruby
 class Address
-  include Schema::DataStructure
+  include Schema
 
   attribute :city, String
   attribute :state, String
 end
 
 class SomeClass
-  include Schema::DataStructure
+  include Schema
 
   attribute :name, String
   attribute :address, Address
@@ -367,7 +363,7 @@ The `transform_read` method is also aliased to `transform_in`.
 
 ### Output Data
 
-A Schema::DataStructure that implements the `transform_write(data)` method can intercept the output data that the object outputs when either `to_h` or `attributes` is invoked. The data can be modified and customized by this method.
+A Schema that implements the `transform_write(data)` method can intercept the output data that the object outputs when either `to_h` or `attributes` is invoked. The data can be modified and customized by this method.
 
 Note that the write stage of converting a data structure to a hash happens after the object's attributes have been converted to a hash but just before the hash data is returned to the receiver.
 
@@ -375,14 +371,14 @@ To affect changes to the output data, the `transform_write` method implementatio
 
 ```ruby
 class Address
-  include Schema::DataStructure
+  include Schema
 
   attribute :city, String
   attribute :state, String
 end
 
 class SomeClass
-  include Schema::DataStructure
+  include Schema
 
   attribute :name, String
   attribute :address, Address
@@ -441,7 +437,7 @@ some_object.raw_attributes
 
 ### Shallow Copy
 
-A shallow copy duplicate of a `Schema::DataStructure` instance can be be created using the `dup` method.
+A shallow copy duplicate of a `Schema` instance can be be created using the `dup` method.
 
 ```ruby
 class SomeClass
@@ -472,7 +468,7 @@ duplicate.name
 
 ### Deep Copy
 
-The `dup` method doesn't create a deep copy by default. A duplicate of an instance of `Schema::DataStructure` whose attributes have references to instances of complex types rather than just simple primitives will share the references to those complex types with the original instance.
+The `dup` method doesn't create a deep copy by default. A duplicate of an instance of `Schema` whose attributes have references to instances of complex types rather than just simple primitives will share the references to those complex types with the original instance.
 
 As with the [transformation](#intercepting-and-modifying-input-and-output-data) of attributes, deep copy behavior can be implemented by implementing the `transform_read` and `transform_write` methods in order to replace attribute values that are instances of complex types with entirely new instances.
 
